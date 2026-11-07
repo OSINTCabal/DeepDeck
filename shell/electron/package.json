@@ -1,0 +1,19 @@
+{
+  "name": "deepdeck-shell",
+  "private": true,
+  "version": "1.0.0",
+  "description": "DeepDeck frameless desktop shell (Electron)",
+  "main": "main.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=24.9.0"
+  },
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test tests/*.test.js"
+  },
+  "dependencies": {
+    "electron": "^44.6.0",
+    "semver": "^7.8.5"
+  }
+}

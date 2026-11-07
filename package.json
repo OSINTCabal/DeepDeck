@@ -1,0 +1,20 @@
+{
+  "name": "deepdeck",
+  "version": "1.0.0",
+  "private": true,
+  "description": "DeepDeck \u2014 a Fedora desktop app for DeepSeek web chat and the DeepSeek Harness",
+  "license": "MIT",
+  "scripts": {
+    "build": "npm --prefix frontend run build",
+    "typecheck": "npm --prefix frontend run typecheck",
+    "test": "npm --prefix shell/electron test",
+    "dev": "node scripts/dev.mjs",
+    "smoke": "node scripts/smoke-harness.mjs",
+    "check": "bash scripts/check.sh",
+    "install:app": "bash packaging/install.sh"
+  },
+  "author": "DeepDeck contributors",
+  "engines": {
+    "node": ">=24.9.0"
+  }
+}

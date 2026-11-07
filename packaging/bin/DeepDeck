@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+# DeepDeck launcher. Starts the frameless Electron shell, which starts and owns
+# its own dsh Web process. Safe to run from anywhere; the configured workspace
+# directory is independent of the caller's cwd.
+set -eu
+
+SELF="$(readlink -f "$0")"
+SELF_DIR="$(dirname "$SELF")"
+
+APP_HOME="${DEEPDECK_HOME:-}"
+if [ -z "$APP_HOME" ]; then
+  if [ -f "$SELF_DIR/../../shell/electron/main.js" ]; then
+    APP_HOME="$(cd "$SELF_DIR/../.." && pwd)"
+  elif [ -f "$SELF_DIR/../share/deepdeck/shell/electron/main.js" ]; then
+    APP_HOME="$(cd "$SELF_DIR/../share/deepdeck" && pwd)"
+  elif [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/deepdeck/shell/electron/main.js" ]; then
+    APP_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/deepdeck"
+  else
+    echo "DeepDeck: cannot locate the application. Set DEEPDECK_HOME or run packaging/install.sh." >&2
+    exit 1
+  fi
+fi
+
+# Launcher environment: optional non-secret settings such as the
+# workspace path. Never store API keys here; the harness owns its credentials.
+CFG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/deepdeck"
+if [ -f "$CFG_DIR/env" ]; then
+  set -a
+  # shellcheck disable=SC1090
+  . "$CFG_DIR/env"
+  set +a
+fi
+
+# Node from nvm is not on a desktop launcher's PATH. Prefer the newest installed
+# nvm Node, then the usual system locations.
+if [ -d "$HOME/.nvm/versions/node" ]; then
+  NODE_DIR="$(ls -1 "$HOME/.nvm/versions/node" 2>/dev/null | sort -V | tail -1 || true)"
+  if [ -n "$NODE_DIR" ]; then
+    PATH="$HOME/.nvm/versions/node/$NODE_DIR/bin:$PATH"
+  fi
+fi
+PATH="$HOME/.local/bin:$HOME/.local/share/pnpm:$PATH:/usr/local/bin:/usr/bin:/bin"
+export PATH
+
+ELECTRON_BIN="${DEEPDECK_ELECTRON:-}"
+if [ -z "$ELECTRON_BIN" ]; then
+  for candidate in \
+    "$APP_HOME/shell/electron/node_modules/electron/dist/electron" \
+    "$(command -v electron 2>/dev/null || true)"; do
+    if [ -n "$candidate" ] && [ -x "$candidate" ]; then
+      ELECTRON_BIN="$candidate"
+      break
+    fi
+  done
+fi
+
+if [ -z "$ELECTRON_BIN" ] || [ ! -x "$ELECTRON_BIN" ]; then
+  echo "DeepDeck: Electron is not installed for this application." >&2
+  echo "Run: bash \"$APP_HOME/packaging/install.sh\"" >&2
+  exit 1
+fi
+
+export DEEPDECK_HOME="$APP_HOME"
+exec "$ELECTRON_BIN" "$APP_HOME/shell/electron" "$@"

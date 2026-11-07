@@ -1,0 +1,213 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* DeepDeck shell tokens. The two embedded products keep their own design
+   systems; these variables style only app chrome and the native control plane.
+   DeepSeek's accent blue is the single brand color. */
+@layer base {
+  :root {
+    --background: 220 20% 97%;
+    --foreground: 222 20% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 20% 8%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 20% 8%;
+    --muted: 220 16% 95%;
+    --muted-foreground: 220 9% 40%;
+    --text-faint: 220 8% 45%;
+    --border: 220 14% 89%;
+    --input: 220 12% 82%;
+    --primary: 227 100% 61%;
+    --primary-foreground: 0 0% 100%;
+    --accent: 228 100% 97%;
+    --danger: 4 72% 50%;
+    --success: 160 76% 28%;
+    --warning: 33 92% 37%;
+    --info: 220 76% 45%;
+    --bar: 0 0% 100%;
+    --bar-border: 220 14% 89%;
+    color-scheme: light;
+  }
+
+  :root[data-theme="dark"] {
+    --background: 240 4% 8.6%;
+    --foreground: 216 28% 93%;
+    --card: 240 4% 11%;
+    --card-foreground: 216 28% 93%;
+    --popover: 240 4% 12%;
+    --popover-foreground: 216 28% 93%;
+    --muted: 240 4% 14%;
+    --muted-foreground: 216 14% 66%;
+    --text-faint: 216 12% 48%;
+    --border: 240 4% 17%;
+    --input: 240 4% 24%;
+    --primary: 221 99% 67%;
+    --primary-foreground: 222 30% 8%;
+    --accent: 225 40% 16%;
+    --danger: 4 78% 64%;
+    --success: 158 54% 48%;
+    --warning: 38 90% 58%;
+    --info: 214 90% 68%;
+    --bar: 240 4% 8.6%;
+    --bar-border: 240 4% 16%;
+    color-scheme: dark;
+  }
+
+  :root[data-theme="midnight"] {
+    --background: 222 32% 7%;
+    --foreground: 216 30% 94%;
+    --card: 222 28% 10%;
+    --card-foreground: 216 30% 94%;
+    --popover: 222 30% 11%;
+    --popover-foreground: 216 30% 94%;
+    --muted: 222 24% 14%;
+    --muted-foreground: 216 18% 70%;
+    --text-faint: 216 14% 53%;
+    --border: 222 22% 18%;
+    --input: 222 20% 26%;
+    --primary: 205 100% 64%;
+    --primary-foreground: 222 40% 8%;
+    --accent: 215 45% 16%;
+    --danger: 4 80% 66%;
+    --success: 158 58% 52%;
+    --warning: 38 92% 62%;
+    --info: 200 92% 68%;
+    --bar: 222 32% 7%;
+    --bar-border: 222 22% 16%;
+    color-scheme: dark;
+  }
+
+  :root[data-theme="graphite"] {
+    --background: 30 4% 8%;
+    --foreground: 40 8% 92%;
+    --card: 30 4% 11%;
+    --card-foreground: 40 8% 92%;
+    --popover: 30 4% 12%;
+    --popover-foreground: 40 8% 92%;
+    --muted: 30 4% 15%;
+    --muted-foreground: 35 6% 69%;
+    --text-faint: 35 5% 53%;
+    --border: 30 4% 18%;
+    --input: 30 4% 25%;
+    --primary: 36 85% 62%;
+    --primary-foreground: 30 30% 10%;
+    --accent: 36 25% 16%;
+    --danger: 4 75% 64%;
+    --success: 154 45% 50%;
+    --warning: 42 90% 62%;
+    --info: 210 55% 66%;
+    --bar: 30 4% 8%;
+    --bar-border: 30 4% 16%;
+    color-scheme: dark;
+  }
+
+  :root[data-theme="paper"] {
+    --background: 38 38% 95%;
+    --foreground: 28 25% 14%;
+    --card: 40 50% 98%;
+    --card-foreground: 28 25% 14%;
+    --popover: 40 50% 99%;
+    --popover-foreground: 28 25% 14%;
+    --muted: 38 28% 91%;
+    --muted-foreground: 30 12% 35%;
+    --text-faint: 32 10% 40%;
+    --border: 35 20% 84%;
+    --input: 35 18% 76%;
+    --primary: 158 42% 30%;
+    --primary-foreground: 40 50% 98%;
+    --accent: 150 30% 90%;
+    --danger: 4 68% 44%;
+    --success: 158 55% 26%;
+    --warning: 32 82% 32%;
+    --info: 210 60% 40%;
+    --bar: 40 45% 97%;
+    --bar-border: 35 20% 84%;
+    color-scheme: light;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+      --background: 240 4% 8.6%;
+      --foreground: 216 28% 93%;
+      --card: 240 4% 11%;
+      --card-foreground: 216 28% 93%;
+      --popover: 240 4% 12%;
+      --popover-foreground: 216 28% 93%;
+      --muted: 240 4% 14%;
+      --muted-foreground: 216 14% 66%;
+      --text-faint: 216 12% 48%;
+      --border: 240 4% 17%;
+      --input: 240 4% 24%;
+      --primary: 221 99% 67%;
+      --primary-foreground: 222 30% 8%;
+      --accent: 225 40% 16%;
+      --danger: 4 78% 64%;
+      --success: 158 54% 48%;
+      --warning: 38 90% 58%;
+      --info: 214 90% 68%;
+      --bar: 240 4% 8.6%;
+      --bar-border: 240 4% 16%;
+      color-scheme: dark;
+    }
+  }
+
+  * { border-color: hsl(var(--border)); }
+  html, body, #root { height: 100%; }
+  html { background: hsl(var(--background)); }
+  body {
+    margin: 0;
+    overflow: hidden;
+    background: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-family: system-ui, Inter, "Segoe UI", sans-serif;
+    font-size: 13px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection { background: hsl(var(--primary) / 0.22); }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  button:disabled { cursor: default; }
+  :focus-visible { outline: 2px solid hsl(var(--primary)); outline-offset: 1px; }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: hsl(var(--border)); border-radius: 6px; border: 2px solid transparent; background-clip: padding-box; }
+  ::-webkit-scrollbar-thumb:hover { background: hsl(var(--text-faint) / 0.5); border: 2px solid transparent; background-clip: padding-box; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+}
+
+@layer components {
+  .drag-region { -webkit-app-region: drag; }
+  .no-drag { -webkit-app-region: no-drag; }
+  .mono { font-family: ui-monospace, "JetBrains Mono", SFMono-Regular, monospace; }
+  .tabular { font-variant-numeric: tabular-nums; }
+  .scroll-area { overflow-y: auto; overscroll-behavior: contain; }
+  .hairline { border-color: hsl(var(--border)); }
+}
+
+@keyframes dd-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes dd-slide-up { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes dd-pop-in { from { opacity: 0; transform: translateY(-3px) scale(0.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes dd-slide-in-right { from { opacity: 0; transform: translateX(8px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes dd-spin { to { transform: rotate(360deg); } }
+.dd-enter { animation: dd-fade-in 140ms cubic-bezier(0.22, 1, 0.36, 1); }
+.dd-rise { animation: dd-slide-up 160ms cubic-bezier(0.22, 1, 0.36, 1); }
+.dd-menu-in { animation: dd-pop-in 150ms cubic-bezier(0.22, 1, 0.36, 1); transform-origin: top right; }
+.dd-panel-in { animation: dd-slide-in-right 180ms cubic-bezier(0.22, 1, 0.36, 1); }
+.dd-theme-transition *,
+.dd-theme-transition *::before,
+.dd-theme-transition *::after {
+  transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+  transition-duration: 220ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+.dd-spinner {
+  width: 14px; height: 14px; border-radius: 999px;
+  border: 2px solid hsl(var(--border));
+  border-top-color: hsl(var(--primary));
+  animation: dd-spin 700ms linear infinite;
+}

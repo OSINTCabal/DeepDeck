@@ -1,0 +1,9 @@
+DeepDeck is an unofficial, independent project.
+
+DeepSeek, DeepSeek Harness, and the DeepSeek whale mark are trademarks of their
+respective owner. The official mark included in this repository is used only to
+identify the embedded DeepSeek services and does not imply affiliation,
+sponsorship, or endorsement.
+
+DeepDeck embeds the real chat.deepseek.com and the user's own DeepSeek Harness
+checkout. It does not redistribute either product.

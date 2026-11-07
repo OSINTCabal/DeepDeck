@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=DeepDeck
+GenericName=DeepSeek desktop
+Comment=DeepSeek web chat and DeepSeek Harness coding in one window
+Exec=DeepDeck %U
+Icon=deepdeck
+Terminal=false
+Categories=Development;
+Keywords=deepseek;harness;chat;coding;agent;deck;
+StartupNotify=true
+StartupWMClass=DeepDeck
